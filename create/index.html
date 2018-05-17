@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Mexican Revolution Trivia</title>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="/styles.css">
+      </head>
+   <body>
+       <div id="triviaContainer" class="container">
+         <div class="title">Mexican Revolution Trivia</div>
+         <div id="question" class="question"></div>
+         <label class="option"><input type="radio" name="mx" value="1"/> <span id="opt1"></span></label>
+         <label class="option"><input type="radio" name="mx" value="2"/> <span id="opt2"></span></label>
+         <label class="option"><input type="radio" name="mx" value="3"/> <span id="opt3"></span></label>
+         <label class="option"><input type="radio" name="mx" value="4"/> <span id="opt4"></span></label>
+         <button id="newButton" class="next-que" onclick="showNewQuestion();"> Next Question</button>
+      </div>
+      <div id="result" class="container result" style="display:none;"></div>
+      <script src="trivia.js"></script>
+   </body>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+       <style type="text/css">
+            body{
+     font-family:"Comic Sans MS", cursive, sans-serif;
+     background:#008000 ;
+}
+ .container{
+     height:330px;
+     width: 1000px;
+     position:absolute;
+     top:50%;
+     left:50%;
+     transform: translateX(-50%) translateY(-50%);
+     background: rgb(255,255,255);
+     padding:20px;
+     border:2px solid #008000 ;
+     box-shadow: 0 0 8px 3px #fffff;
+}
+ .title{
+     padding-top: 30px;
+     text-align: center;
+     font-size: 40px;
+     text-transform: uppercase;
+     color:#008000;
+}
+ .question{
+     padding:20px;
+     font-size:22px;
+     background:#FE0D0D;
+     border-radius:30px;
+     margin:10px 0 10px 0;
+     color: #00000;
+}
+ .option{
+     width: 470px;
+     display:inline-block;
+     padding: 10px 0 10px 15px;
+     vertical-align: middle;
+     background: rgb(254,1,1);
+     margin:10px 0 10px 0;
+     color:#FEFEFE;
+     border-radius:30px;
+}
+ .option:hover{
+     background:#008000;
+     color:#FEFEFE;
+}
+ .next-que{
+     background:rgb(254,13,13);
+     width:100px;
+     height:35px;
+     border-radius:20px;
+     cursor:pointer;
+     float:right;
+     margin:10px;
+}
+ .next-que:hover{
+     background:#008000;
+     color:#FEFEFE;
+}
+ .result{
+     height:100px;
+     text-align:center;
+     font-size:75px;
+}
+ .option input:checked .option{
+     background:#FE0D0D;
+     color:#000;
+}
+ 
+       </style>
+       <script type="text/javascript" >
+           let questions = [{
+    "question": "The Profirio dictatorship ended in what year?",
+    "option1": "1910",
+    "option2": "1990",
+    "option3": "1920",
+    "option4": "1905",
+    "answer": "1"
+}, {
+    "question": "Where was Emiliano Zapata from?",
+    "option1": "Guadalajara",
+    "option2": "Morelos",
+    "option3": "Sinaloa",
+    "option4": "Guerrero",
+    "answer": "2"
+}, {
+    "question": "Where was Pancho Villa from?",
+    "option1": "Durango",
+    "option2": "Nayarit",
+    "option3": "New Mexico",
+    "option4": "Ciudad Juaez",
+    "answer": "1"
+}, {
+    "question": "What year did the Mexican Revolution begin?",
+    "option1": "1895",
+    "option2": "1905",
+    "option3": "1910",
+    "option4": "1875",
+    "answer": "3"
+}, {
+    "question": "When did the Mexican Revolution end?",
+    "option1": "1915",
+    "option2": "1920",
+    "option3": "1940",
+    "option4": "1935",
+    "answer": "2"
+}, {
+    "question": "Who ended the Mexican revolution?",
+    "option1": "Francisco Madero, Pascual Orozco, Pancho Villa and Emiliano Zapata",
+    "option2": "Marco Gonzalez, Luis Hernandez, Jose Lopez and Juan Martinez",
+    "option3": "Martin Garcia, Jesus Rodriguez, David Flores and Alejandro Fernandez",
+    "option4": "Juan Perez, Fransisco Martinez, Antonio Sanchez and Salvador Rivera",
+    "answer": "1"
+}, {
+    "question": "How many revolutionary leaders of Mexico were assasinated??",
+    "option1": "0",
+    "option2": "2",
+    "option3": "3",
+    "option4": "5",
+    "answer": "3"
+}, {
+    "question": "When was the new constitution formed?",
+    "option1": "1910",
+    "option2": "1920",
+    "option3": "1600",
+    "option4": "1917",
+    "answer": "4"
+}];
+
+let currentQuestion = 0;
+let score = 0;
+
+
+let totalQuestions = questions.length;
+
+let container = document.getElementById("triviaContainer");
+ let question = document.getElementById("question");
+let opt1 = document.getElementById("opt1");
+let opt2 = document.getElementById("opt2");
+let opt3 = document.getElementById("opt3");
+let opt4 = document.getElementById("opt4");
+let newButton = document.getElementById("newButton");
+let resultCont = document.getElementById("result");
+
+function loadQuestion(questionIndex) {
+    let q = questions[questionIndex];
+    question.textContent = (questionIndex + 1) + "." + q.question;
+    opt1.textContent = q.option1;
+    opt2.textContent = q.option2;
+    opt3.textContent = q.option3;
+    opt4.textContent = q.option4;
+}
+
+function showNewQuestion() {
+    let selectedOption = document.querySelector("input[type=radio]:checked");
+    if (!selectedOption) {
+        alert("Please choose your answer!");
+        return;
+    }
+    let answer = selectedOption.value;
+    if (questions[currentQuestion].answer == answer) {
+        score += 10;
+    }
+    selectedOption.checked = false;
+    currentQuestion++;
+    if (currentQuestion == totalQuestions - 1) {
+        newButton.textContent = "Finish";
+    }
+    if (currentQuestion == totalQuestions) {
+        container.style.display = "none";
+        resultCont.style.display = "";
+        resultCont.textContent = "Your Score is " + score + " out of 80";
+        return;
+    }
+    loadQuestion(currentQuestion);
+}
+loadQuestion(currentQuestion);
+       </script>
+</body>
+</html>
