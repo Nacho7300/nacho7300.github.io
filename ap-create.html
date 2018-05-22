@@ -4,27 +4,119 @@
         <link href="stylesheet.css" rel="stylesheet"/>
         </head>
         <body>
-
-        <div id="page">
+<div id="page">
         <div id="content">
                 <div class="title">
-        <h1>Ignacio's Capstone</h1>
-        </div>
-      <table class="nav">
-          <tr>
-            <td><a href="index.html">Home</a></td>
-            <td><a href="ap-explore.html">Explore</a></td>
-            <td><a href="ap-create.html">Create</a></td>
-            <td><a href="strengths.html">Strengths</a></td>
-            <td><a href="college.html">College</a></td>
-          </tr>
-        </table>
-        <h1>AP Create</h1>
-                    <h2>Trivia Game</h2>
-        <iframe src="create/index.html" width="1000" height="500" />
-        </div>
-        </div>
-        </body>
-        </html>
-        
-        
+    <h1>Ignacio's Capstone</h1>
+  <table class="nav">
+      <tr>
+        <td><a href="index.html">Home</a></td>
+        <td><a href="ap-explore.html">Explore</a></td>
+        <td><a href="ap-create.html">Create</a></td>
+        <td><a href="strengths.html">Strengths</a></td>
+        <td><a href="college.html">College</a></td>
+         <td><a href="tech-in-my-life.html">Tech in My life</a></td>
+      </tr>
+    </table>
+
+  <h2>AP CREATE</h2>
+     
+       <p>
+                <h3>2A)</h3>
+My program is written using JavaScript and the Jquery library. My code was created by using the Glitch development program. The purpose of my trivia game is for you to gain knowledge about the Mexican Revolution. In this video clip, you can see how the trivia game functions when the game is in action.The questions in the trivia are questions that have some connection with the Mexican Revolution and help you gain some knowledge about the Mexican Revolution.
+</p>
+     
+      <p>
+                <h3>2B)</h3>My partner and I used iterative pair programming by my partner typing half of the Javascript code and then me typing the other half of the code .The first developmental challenge I encountered was not being able to make the questions show on the screen. I solved this challenge by breaking the code into pieces which made our code be more clear since I had named some of my functions the same name which made me get confused and totally made my code not work as intended. The second developmental challenge I encountered was when you tried answering the last question you wouldn't get your score and it would just keep staying on the last question. I solved this challenge by adding an extra curly bracket and removing a semicolon that was not needed. By myself, I was able to make the trivia game a multiple answer trivia game. My partner and I overcame a challenge by revising the code every time something was not functioning since it could have messed up all of our code which it did sometimes but we fixed it as fast as we were able to.
+</p>
+
+            <p><b>2C)</b>
+                <pre><code>let answer = selectedOption.value;
+    if (questions[currentQuestion].answer == answer) {
+        score += 10;
+    }
+
+</code></pre>My main algorithm that I am using is the function showNewQuestion(). Inside the  function showNewQuestion() each question is worth 10 points, if the user selects the answer give them 10 points since the answer equals the selectedOption. This sub algorithm is adding 10 points each time you choose the correct answer which at the end it will give you your final score.The showNewQuestion() function incorporates a math sub algorithm as shown below.<br><br>
+                <pre><code>
+                    
+                </code></pre>The purpose of this code is so you can get your score after you respond all the trivia questions. When this logic algorithm runs correctly it  will show “Your score is 60 out of 80” at the end of the game. The algorithm is able to achieve this because it is using the resultCont.textContent to display your final score. If this program did not include this algorithm, then you will not be able to view your final score and you will not know if you did good or bad on the trivia. The  function showNewQuestion() also incorporates a logic sub algorithm as shown.
+                <pre><code>if (currentQuestion == totalQuestions) {
+        container.style.display = "none";
+        resultCont.style.display = "";
+        resultCont.textContent = "Your Score is " + score + " out of 80";
+        return;
+    }
+</code></pre>The intended purpose of this sub algorithm is to reset the hail that has fallen out of the canvas to make the hail continue falling. When this logic algorithm shown above runs correctly it is able to make the hail reset once it leaves
+                the canvas width and go back right up. This sub algorithm is able to achieve this result because the if statement is telling the circles that are out of the screen to choose different x-postions and reset the y-position to zero if they
+                are out of the canvas height.
+ </p>
+ 
+             </p>
+            <p><b>2D)</b>
+                <pre><code>function showNewQuestion() {
+    let selectedOption = document.querySelector("input[type=radio]:checked");
+    if (!selectedOption) {
+        alert("Please choose your answer!");
+        return;
+    }
+    let answer = selectedOption.value;
+    if (questions[currentQuestion].answer == answer) {
+        score += 10;
+    }
+    selectedOption.checked = false;
+    currentQuestion++;
+    if (currentQuestion == totalQuestions - 1) {
+        newButton.textContent = "Finish";
+    }
+    if (currentQuestion == totalQuestions) {
+        container.style.display = "none";
+        resultCont.style.display = "";
+        resultCont.textContent = "Your Score is " + score + " out of 80";
+        return;
+    }
+    loadQuestion(currentQuestion);
+}
+ 
+loadQuestion(currentQuestion);
+
+</code></pre>An example of an abstraction in my program is the showNewQuestion function.
+This simplifies my program by making the project function without extra code that is not useful to the project. I created this function to avoid the problem of not being able to finish the trivia game.If this abstraction weren’t present, you could not choose an answer then it wouldn't show an alert saying to choose an answer or show a button that takes you to the end of the game and it would not show your final score nor it would give each the score for the questions that that you got correct.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <iframe src="create/index.html" width="1000" height="500" />
+
+    </div>
+    </div>
+    </div>
+    </body>
+    </html>
+    
+    
