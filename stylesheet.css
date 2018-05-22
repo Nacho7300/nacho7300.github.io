@@ -101,13 +101,13 @@
 }
 
 p {
-    font: 40px Arial, Helvetica, sans-serif;
+    font: 20px Arial, Helvetica, sans-serif;
 }
 .title {
-    font-family: italic bold 30px "Times New Roman", Times, serif;
+    font-family: italic bold 20px "Times New Roman", Times, serif;
 }
 .nav {
-    font: 35px arial, sans-serif;
+    font: 30px arial, sans-serif;
 }
 
 
